@@ -3,182 +3,428 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz Día de la Novia ❤️</title>
+<title>Para Mar ❤️</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#ffb6c1,#ffd1dc);
-    text-align:center;
-    margin:0;
-    padding:20px;
-    min-height:100vh;
+overflow:hidden;
+height:100vh;
+background:radial-gradient(circle at center,#5a0028,#14000b);
 }
 
-.contenedor{
-    max-width:700px;
-    margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(0,0,0,.15);
+/* Pantalla inicial */
+
+#inicio{
+position:fixed;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:100;
+background:rgba(0,0,0,.3);
 }
 
-h1{
-    color:#e91e63;
+#inicio h1{
+color:white;
+font-size:3rem;
+text-align:center;
+margin-bottom:20px;
+}
+
+#inicio p{
+color:#ffd3e8;
+font-size:1.2rem;
+margin-bottom:25px;
 }
 
 button{
-    background:#e91e63;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:30px;
-    font-size:18px;
-    cursor:pointer;
-    margin-top:15px;
+padding:15px 35px;
+border:none;
+border-radius:50px;
+font-size:22px;
+background:#ff1493;
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px #ff1493;
 }
 
 button:hover{
-    transform:scale(1.05);
+transform:scale(1.05);
 }
 
-#ramo{
-    display:none;
-    margin-top:30px;
+/* Escena */
+
+#escena{
+display:none;
+width:100%;
+height:100vh;
+position:relative;
+overflow:hidden;
 }
 
-.rosa{
-    font-size:50px;
-    opacity:0;
-    transform:scale(0);
-    transition:all .8s ease;
-    display:inline-block;
+/* Título */
+
+.titulo{
+position:absolute;
+top:30px;
+width:100%;
+text-align:center;
+font-size:55px;
+color:#ff8fc8;
+z-index:20;
+
+text-shadow:
+0 0 10px #ff1493,
+0 0 20px #ff1493,
+0 0 40px #ff1493;
 }
 
-.rosa.visible{
-    opacity:1;
-    transform:scale(1);
+.subtitulo{
+position:absolute;
+top:100px;
+width:100%;
+text-align:center;
+font-size:30px;
+color:white;
+z-index:20;
 }
 
-#pregunta{
-    display:none;
-    margin-top:25px;
+/* Ramo */
+
+.ramo{
+position:absolute;
+left:50%;
+top:55%;
+width:420px;
+transform:translate(-50%,-50%) scale(0);
+opacity:0;
+
+filter:
+drop-shadow(0 0 15px #ff1493)
+drop-shadow(0 0 35px #ff1493);
+
+animation:abrirRamo 6s forwards;
 }
+
+@keyframes abrirRamo{
+
+0%{
+opacity:0;
+transform:translate(-50%,-50%) scale(.1);
+}
+
+30%{
+opacity:1;
+transform:translate(-50%,-50%) scale(.4);
+}
+
+60%{
+transform:translate(-50%,-50%) scale(.8);
+}
+
+80%{
+transform:translate(-50%,-50%) scale(1.1);
+}
+
+100%{
+opacity:1;
+transform:translate(-50%,-50%) scale(1);
+}
+
+}
+
+/* Frases */
+
+.frase{
+position:absolute;
+color:#ffcce0;
+opacity:.18;
+font-size:28px;
+white-space:nowrap;
+animation:mover linear infinite;
+}
+
+@keyframes mover{
+
+from{
+transform:translateX(-400px);
+}
+
+to{
+transform:translateX(calc(100vw + 400px));
+}
+
+}
+
+/* Corazones */
 
 .corazon{
-    position:fixed;
-    color:#ff4081;
-    animation:subir 4s linear infinite;
+position:absolute;
+color:#ff5ca8;
+opacity:.4;
+animation:subir linear infinite;
 }
 
 @keyframes subir{
-    from{
-        transform:translateY(0);
-        opacity:1;
-    }
-    to{
-        transform:translateY(-100vh);
-        opacity:0;
-    }
+
+from{
+transform:translateY(100vh);
 }
+
+to{
+transform:translateY(-120px);
+}
+
+}
+
+/* Pétalos */
+
+.petalo{
+position:absolute;
+animation:caer linear infinite;
+}
+
+@keyframes caer{
+
+from{
+transform:
+translateY(-100px)
+rotate(0deg);
+}
+
+to{
+transform:
+translateY(120vh)
+rotate(720deg);
+}
+
+}
+
+/* Carta */
+
+.carta{
+position:absolute;
+left:50%;
+bottom:-500px;
+transform:translateX(-50%);
+width:90%;
+max-width:700px;
+padding:25px;
+
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(8px);
+
+border-radius:20px;
+
+color:white;
+
+font-size:20px;
+line-height:1.8;
+
+transition:2s;
+z-index:30;
+}
+
+.carta.mostrar{
+bottom:20px;
+}
+
 </style>
 </head>
-
 <body>
 
-<div class="contenedor">
+<audio id="musica" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
 
-<h1>💖 Feliz Día de la Novia 💖</h1>
+<div id="inicio">
 
-<p>
-Hoy quiero recordarte lo especial que eres para mí.
-Gracias por cada sonrisa, cada abrazo y cada momento que compartimos.
-Te amo muchísimo. ❤️
-</p>
+<h1>🌹 Para Mar ❤️ 🌹</h1>
 
-<button onclick="abrirRamo()">
-🌹 Abrir mi regalo
+<p>Tengo una sorpresa para ti...</p>
+
+<button onclick="iniciar()">
+Abrir mi sorpresa 🌹
 </button>
 
-<div id="ramo">
-<h2>Para ti 💕</h2>
+</div>
 
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
-<span class="rosa">🌹</span>
+<div id="escena">
+
+<div class="titulo">
+Feliz Día de la Novia
+</div>
+
+<div class="subtitulo">
+Para Mar ❤️
+</div>
+
+<img src="ramo36.png" class="ramo">
+
+<div class="carta" id="carta">
+
+Mar ❤️
 
 <br><br>
 
-<button id="btnPregunta" style="display:none;"
-onclick="mostrarPregunta()">
-💌 Tengo una pregunta para ti
-</button>
-</div>
+Hoy quiero recordarte lo especial que eres para mí.
 
-<div id="pregunta">
-<h2>❤️ ¿Quieres seguir siendo mi novia? ❤️</h2>
+Cada una de estas 36 rosas representa un motivo por el que te amo,
+por cada sonrisa que me regalas,
+por cada momento compartido
+y por toda la felicidad que llevas a mi vida.
 
-<button onclick="si()">Sí ❤️</button>
-<button onclick="tambienSi()">Por supuesto ❤️</button>
+<br><br>
+
+Gracias por existir,
+por acompañarme
+y por convertir los días comunes
+en recuerdos inolvidables.
+
+<br><br>
+
+Eres mi casualidad favorita,
+mi persona favorita
+y mi lugar seguro.
+
+<br><br>
+
+Te amo muchísimo. 🌹❤️
+
 </div>
 
 </div>
 
 <script>
 
-function abrirRamo(){
+const frases=[
 
-document.getElementById("ramo").style.display="block";
+"Te Amo ❤️",
+"Mi Persona Favorita",
+"Mi Casualidad Favorita 🌹",
+"Siempre Tú ❤️",
+"Eres Mi Felicidad",
+"Gracias Por Existir",
+"Por Siempre ❤️",
+"Te Elijo Cada Día",
+"Mi Lugar Seguro",
+"Mi Todo 💕"
 
-const rosas = document.querySelectorAll(".rosa");
+];
 
-rosas.forEach((rosa,index)=>{
+function iniciar(){
+
+document.getElementById("inicio").style.display="none";
+document.getElementById("escena").style.display="block";
+
+document.getElementById("musica").play();
+
+crearFrases();
+crearCorazones();
+crearPetalos();
+
 setTimeout(()=>{
-rosa.classList.add("visible");
 
-if(index === rosas.length-1){
-document.getElementById("btnPregunta").style.display="inline-block";
-}
-}, index * 600);
-});
+document
+.getElementById("carta")
+.classList.add("mostrar");
 
-}
+},8000);
 
-function mostrarPregunta(){
-document.getElementById("pregunta").style.display="block";
 }
 
-function si(){
-alert("❤️ Gracias por seguir compartiendo tu vida conmigo. Te amo ❤️");
+function crearFrases(){
+
+for(let i=0;i<35;i++){
+
+let f=document.createElement("div");
+
+f.className="frase";
+
+f.innerText=
+frases[Math.floor(Math.random()*frases.length)];
+
+f.style.top=Math.random()*100+"%";
+
+f.style.animationDuration=
+(15+Math.random()*25)+"s";
+
+document.body.appendChild(f);
+
 }
 
-function tambienSi(){
-alert("🥰 Sabía que dirías que sí. Eres lo mejor que me ha pasado ❤️");
 }
+
+function crearCorazones(){
 
 setInterval(()=>{
-const corazon=document.createElement("div");
-corazon.classList.add("corazon");
-corazon.innerHTML="❤️";
-corazon.style.left=Math.random()*100+"vw";
-corazon.style.bottom="-20px";
-document.body.appendChild(corazon);
+
+let c=document.createElement("div");
+
+c.className="corazon";
+
+c.innerHTML="❤️";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.fontSize=
+(15+Math.random()*35)+"px";
+
+c.style.animationDuration=
+(5+Math.random()*8)+"s";
+
+document.body.appendChild(c);
 
 setTimeout(()=>{
-corazon.remove();
-},4000);
 
-},500);
+c.remove();
+
+},14000);
+
+},250);
+
+}
+
+function crearPetalos(){
+
+setInterval(()=>{
+
+let p=document.createElement("div");
+
+p.className="petalo";
+
+p.innerHTML="🌹";
+
+p.style.left=Math.random()*100+"vw";
+
+p.style.fontSize=
+(15+Math.random()*30)+"px";
+
+p.style.animationDuration=
+(5+Math.random()*6)+"s";
+
+document.body.appendChild(p);
+
+setTimeout(()=>{
+
+p.remove();
+
+},12000);
+
+},180);
+
+}
 
 </script>
 
 </body>
-  </html>
+    </html>
