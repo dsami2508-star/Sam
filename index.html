@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Día de la Novia ❤️</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ffb6c1,#ffd1dc);
+    text-align:center;
+    margin:0;
+    padding:20px;
+    min-height:100vh;
+}
+
+.contenedor{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,.15);
+}
+
+h1{
+    color:#e91e63;
+}
+
+button{
+    background:#e91e63;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#ramo{
+    display:none;
+    margin-top:30px;
+}
+
+.rosa{
+    font-size:50px;
+    opacity:0;
+    transform:scale(0);
+    transition:all .8s ease;
+    display:inline-block;
+}
+
+.rosa.visible{
+    opacity:1;
+    transform:scale(1);
+}
+
+#pregunta{
+    display:none;
+    margin-top:25px;
+}
+
+.corazon{
+    position:fixed;
+    color:#ff4081;
+    animation:subir 4s linear infinite;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>💖 Feliz Día de la Novia 💖</h1>
+
+<p>
+Hoy quiero recordarte lo especial que eres para mí.
+Gracias por cada sonrisa, cada abrazo y cada momento que compartimos.
+Te amo muchísimo. ❤️
+</p>
+
+<button onclick="abrirRamo()">
+🌹 Abrir mi regalo
+</button>
+
+<div id="ramo">
+<h2>Para ti 💕</h2>
+
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+<span class="rosa">🌹</span>
+
+<br><br>
+
+<button id="btnPregunta" style="display:none;"
+onclick="mostrarPregunta()">
+💌 Tengo una pregunta para ti
+</button>
+</div>
+
+<div id="pregunta">
+<h2>❤️ ¿Quieres seguir siendo mi novia? ❤️</h2>
+
+<button onclick="si()">Sí ❤️</button>
+<button onclick="tambienSi()">Por supuesto ❤️</button>
+</div>
+
+</div>
+
+<script>
+
+function abrirRamo(){
+
+document.getElementById("ramo").style.display="block";
+
+const rosas = document.querySelectorAll(".rosa");
+
+rosas.forEach((rosa,index)=>{
+setTimeout(()=>{
+rosa.classList.add("visible");
+
+if(index === rosas.length-1){
+document.getElementById("btnPregunta").style.display="inline-block";
+}
+}, index * 600);
+});
+
+}
+
+function mostrarPregunta(){
+document.getElementById("pregunta").style.display="block";
+}
+
+function si(){
+alert("❤️ Gracias por seguir compartiendo tu vida conmigo. Te amo ❤️");
+}
+
+function tambienSi(){
+alert("🥰 Sabía que dirías que sí. Eres lo mejor que me ha pasado ❤️");
+}
+
+setInterval(()=>{
+const corazon=document.createElement("div");
+corazon.classList.add("corazon");
+corazon.innerHTML="❤️";
+corazon.style.left=Math.random()*100+"vw";
+corazon.style.bottom="-20px";
+document.body.appendChild(corazon);
+
+setTimeout(()=>{
+corazon.remove();
+},4000);
+
+},500);
+
+</script>
+
+</body>
+  </html>
